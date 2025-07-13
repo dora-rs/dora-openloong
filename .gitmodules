@@ -1,0 +1,3 @@
+[submodule "sdk/loong_sim_sdk_release"]
+	path = sdk/loong_sim_sdk_release
+	url = https://github.com/loongOpen/loong_sim_sdk_release

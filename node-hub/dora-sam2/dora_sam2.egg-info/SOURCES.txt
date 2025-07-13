@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+dora_sam2/__init__.py
+dora_sam2/__main__.py
+dora_sam2/main.py
+dora_sam2.egg-info/PKG-INFO
+dora_sam2.egg-info/SOURCES.txt
+dora_sam2.egg-info/dependency_links.txt
+dora_sam2.egg-info/entry_points.txt
+dora_sam2.egg-info/requires.txt
+dora_sam2.egg-info/top_level.txt
+tests/test_dora_sam2.py
