@@ -22,7 +22,7 @@
 
 ## 如何开发
 
-#### Notice
+### Notice
 
 1. 需要安装 `rust` 环境 (在 `rust-toolchain.toml` 中进行描述)
 2. 推荐使用 `uv` 工具来管理 `python` 项目及包管理，详情见 [astral-uv](https://docs.astral.sh/uv/)
@@ -40,4 +40,6 @@ dora run example/loong/pick-place.yml
 
 ## 项目运行演示
 
-[![dora-openloong](./docs/assets/video-cover.jpg)](https://www.youtube.com/watch?v=_5tFXJQIzi4)
+点击图片跳转至 [youtube](https://www.youtube.com/watch?v=iJJ_26oG5OA) 查看
+
+[![dora-openloong](./docs/assets/video-cover.jpg)](https://www.youtube.com/watch?v=iJJ_26oG5OA)
