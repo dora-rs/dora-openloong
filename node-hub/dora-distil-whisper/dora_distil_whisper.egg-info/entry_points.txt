@@ -1,0 +1,2 @@
+[console_scripts]
+dora-distil-whisper = dora_distil_whisper.main:main

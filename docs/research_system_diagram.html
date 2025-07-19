@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multimodal Robot System Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f8f9fa;
+            padding: 40px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .system-diagram {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            position: relative;
+        }
+
+        .layer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .layer-label {
+            position: absolute;
+            left: -80px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #7f8c8d;
+            font-weight: 500;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+        }
+
+        .modules {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .module {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            min-width: 140px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+
+        .module:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .input-layer .module {
+            border-left: 4px solid #3498db;
+            background: linear-gradient(135deg, #ebf8ff 0%, #f7fafc 100%);
+        }
+
+        .processing-layer .module {
+            border-left: 4px solid #9b59b6;
+            background: linear-gradient(135deg, #faf5ff 0%, #f7fafc 100%);
+        }
+
+        .control-layer .module {
+            border-left: 4px solid #27ae60;
+            background: linear-gradient(135deg, #f0fff4 0%, #f7fafc 100%);
+        }
+
+        .output-layer .module {
+            border-left: 4px solid #e67e22;
+            background: linear-gradient(135deg, #fffaf0 0%, #f7fafc 100%);
+        }
+
+        .module-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+
+        .module-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+        }
+
+        .module-subtitle {
+            font-size: 11px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .arrow {
+            position: absolute;
+            width: 2px;
+            background: #bdc3c7;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .arrow-down {
+            height: 20px;
+            top: 100%;
+        }
+
+        .arrow::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-top: 8px solid #bdc3c7;
+        }
+
+        .feedback-arrow {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            height: 200px;
+            width: 2px;
+            background: #e74c3c;
+            opacity: 0.6;
+            border-radius: 1px;
+        }
+
+        .feedback-arrow::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 8px solid #e74c3c;
+        }
+
+        .feedback-label {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 10px;
+            color: #e74c3c;
+            writing-mode: vertical-lr;
+            text-orientation: mixed;
+        }
+
+        .data-flow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            color: #7f8c8d;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            top: 50%;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .layer-label {
+                position: relative;
+                left: 0;
+                writing-mode: horizontal-tb;
+                text-orientation: initial;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .modules {
+                gap: 20px;
+            }
+
+            .module {
+                min-width: 120px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Multimodal Robot System Architecture</h1>
+
+        <div class="system-diagram">
+            <!-- Input Layer -->
+            <div class="layer input-layer">
+                <div class="layer-label">Input Layer</div>
+                <div class="modules">
+                    <div class="module">
+                        <div class="module-icon">📷</div>
+                        <div class="module-title">RGB-D Camera</div>
+                        <div class="module-subtitle">Intel RealSense D435</div>
+                    </div>
+                    <div class="module">
+                        <div class="module-icon">🎤</div>
+                        <div class="module-title">Audio Input</div>
+                        <div class="module-subtitle">Microphone Array</div>
+                    </div>
+                </div>
+                <div class="arrow arrow-down"></div>
+                <div class="data-flow" style="top: 85%;">RGB-D Images | Audio Stream</div>
+            </div>
+
+            <!-- Processing Layer -->
+            <div class="layer processing-layer">
+                <div class="layer-label">Processing Layer</div>
+                <div class="modules">
+                    <div class="module">
+                        <div class="module-icon">👁️</div>
+                        <div class="module-title">Vision-Language</div>
+                        <div class="module-subtitle">QwenVL Model</div>
+                    </div>
+                    <div class="module">
+                        <div class="module-icon">🗣️</div>
+                        <div class="module-title">Speech Recognition</div>
+                        <div class="module-subtitle">Distil-Whisper</div>
+                    </div>
+                    <div class="module">
+                        <div class="module-icon">✂️</div>
+                        <div class="module-title">Image Segmentation</div>
+                        <div class="module-subtitle">SAM2</div>
+                    </div>
+                </div>
+                <div class="arrow arrow-down"></div>
+                <div class="data-flow" style="top: 85%;">Scene Understanding | Voice Commands | Object Localization
+                </div>
+            </div>
+
+            <!-- Control Layer -->
+            <div class="layer control-layer">
+                <div class="layer-label">Control Layer</div>
+                <div class="modules">
+                    <div class="module">
+                        <div class="module-icon">🧠</div>
+                        <div class="module-title">State Machine</div>
+                        <div class="module-subtitle">Decision Center</div>
+                    </div>
+                </div>
+                <div class="arrow arrow-down"></div>
+                <div class="data-flow" style="top: 85%;">Action Commands | Status Information</div>
+            </div>
+
+            <!-- Output Layer -->
+            <div class="layer output-layer">
+                <div class="layer-label">Output Layer</div>
+                <div class="modules">
+                    <div class="module">
+                        <div class="module-icon">🦾</div>
+                        <div class="module-title">OpenLoong Arm</div>
+                        <div class="module-subtitle">Dual-Arm Controller</div>
+                    </div>
+                    <div class="module">
+                        <div class="module-icon">📊</div>
+                        <div class="module-title">Visualization</div>
+                        <div class="module-subtitle">Real-time Interface</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feedback Arrow -->
+            <div class="feedback-arrow"></div>
+            <div class="feedback-label">Execution Status</div>
+        </div>
+    </div>
+</body>
+
+</html>

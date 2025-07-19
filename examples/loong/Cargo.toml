@@ -1,0 +1,8 @@
+[workspace]
+members = ["loong_arm_node"]
+resolver = "3"
+
+[workspace.dependencies]
+dora-node-api = { version = "0.3.10" }
+ndarray = "0.16.1"
+openloong_sdk_rust = { path = "/home/dora/Project/loong/loong_sim_sdk_release_rust" }

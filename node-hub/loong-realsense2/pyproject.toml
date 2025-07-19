@@ -1,0 +1,5 @@
+[project]
+name = "loong-realsense2"
+version = "0.1.0"
+description = "A basic wrapper for Intel RealSense SDK 2.0"
+

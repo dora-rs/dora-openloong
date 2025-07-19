@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: dora-keyboard
+Version: 0.3.11
+Summary: Dora dora-keyboard
+Author-email: Haixuan Xavier Tao <tao.xavier@outlook.com>, Enzo Le Van <dev@enzo-le-van.fr>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: dora-rs>=0.3.9
+Requires-Dist: numpy<2.0.0
+Requires-Dist: pyarrow>=5.0.0
+Requires-Dist: pynput>=1.6.0
+
+# Dora Node for listening to keyboard input.
+
+Send char only in the `char` output stream, as string, on press.

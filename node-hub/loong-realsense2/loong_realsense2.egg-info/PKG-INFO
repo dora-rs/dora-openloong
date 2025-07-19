@@ -1,0 +1,4 @@
+Metadata-Version: 2.4
+Name: loong-realsense2
+Version: 0.1.0
+Summary: A basic wrapper for Intel RealSense SDK 2.0

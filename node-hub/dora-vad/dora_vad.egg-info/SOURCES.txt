@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+dora_vad/__init__.py
+dora_vad/main.py
+dora_vad.egg-info/PKG-INFO
+dora_vad.egg-info/SOURCES.txt
+dora_vad.egg-info/dependency_links.txt
+dora_vad.egg-info/entry_points.txt
+dora_vad.egg-info/requires.txt
+dora_vad.egg-info/top_level.txt
+tests/test_translate.py

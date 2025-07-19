@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+dora_microphone/__init__.py
+dora_microphone/main.py
+dora_microphone.egg-info/PKG-INFO
+dora_microphone.egg-info/SOURCES.txt
+dora_microphone.egg-info/dependency_links.txt
+dora_microphone.egg-info/entry_points.txt
+dora_microphone.egg-info/requires.txt
+dora_microphone.egg-info/top_level.txt
+tests/test_microphone.py

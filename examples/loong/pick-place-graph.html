@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <div class="mermaid">
+        flowchart TB
+  box_coordinates["**box_coordinates**"]
+  dora-distil-whisper["**dora-distil-whisper**"]
+  dora-microphone["**dora-microphone**"]
+  dora-qwenvl["**dora-qwenvl**"]
+  dora-vad["**dora-vad**"]
+  keyboard["**keyboard**"]
+  loong_arm["**loong_arm**"]
+  parse_bbox["**parse_bbox**"]
+  plot[/"**plot**"\]
+  realsense-d435["**realsense-d435**"]
+  sam2["**sam2**"]
+  state_machine["**state_machine**"]
+subgraph ___dora___ [dora]
+  subgraph ___timer_timer___ [timer]
+    dora/timer/millis/50[\millis/50/]
+    dora/timer/millis/600[\millis/600/]
+    dora/timer/secs/1[\secs/1/]
+    dora/timer/secs/2[\secs/2/]
+  end
+end
+  realsense-d435 -- depth --> box_coordinates
+  sam2 -- masks --> box_coordinates
+  dora-vad -- audio as input --> dora-distil-whisper
+  dora/timer/secs/2 -- tick --> dora-microphone
+  realsense-d435 -- image_depth --> dora-qwenvl
+  dora/timer/millis/600 -- text_1 --> dora-qwenvl
+  state_machine -- text_vlm as text_2 --> dora-qwenvl
+  dora-microphone -- audio --> dora-vad
+  dora/timer/secs/1 -- tick --> keyboard
+  state_machine -- action_l_arm as pose_l --> loong_arm
+  state_machine -- action_r_arm as pose_r --> loong_arm
+  dora-qwenvl -- text --> parse_bbox
+  parse_bbox -- bbox_face as camera_left/boxes2d_face --> plot
+  parse_bbox -- bbox as camera_torso/boxes2d --> plot
+  realsense-d435 -- image_depth as camera_torso/image --> plot
+  dora-qwenvl -- text as text_response --> plot
+  dora-distil-whisper -- text as text_whisper --> plot
+  dora/timer/millis/50 -- tick --> realsense-d435
+  parse_bbox -- bbox as boxes2d --> sam2
+  realsense-d435 -- image_depth --> sam2
+  box_coordinates -- pose --> state_machine
+  loong_arm -- response_l_arm --> state_machine
+  loong_arm -- response_r_arm --> state_machine
+  dora-distil-whisper -- text --> state_machine
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({ startOnLoad: true, securityLevel: 'loose', theme: 'base' });
+    </script>
+</body>
+
+</html>
