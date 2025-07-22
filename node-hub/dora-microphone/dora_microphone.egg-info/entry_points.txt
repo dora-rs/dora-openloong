@@ -1,0 +1,2 @@
+[console_scripts]
+dora-microphone = dora_microphone.main:main

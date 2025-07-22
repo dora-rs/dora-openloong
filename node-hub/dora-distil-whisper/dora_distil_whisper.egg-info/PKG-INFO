@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: dora-distil-whisper
+Version: 0.3.11
+Summary: Dora dora-distil-whisper
+Author-email: Haixuan Xavier Tao <tao.xavier@outlook.com>, Enzo Le Van <dev@enzo-le-van.fr>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: dora-rs>=0.3.9
+Requires-Dist: numpy<2.0.0
+Requires-Dist: pyarrow>=5.0.0
+Requires-Dist: transformers>=4.0.0
+Requires-Dist: accelerate>=0.29.2
+Requires-Dist: torch>=2.2.0
+Requires-Dist: modelscope>=1.18.1
+Requires-Dist: mlx-whisper>=0.4.1; sys_platform == "darwin"
+
+# Dora Whisper Node for transforming speech to text
+
+## YAML Specification
+
+This node is supposed to be used as follows:
+
+```yaml
+- id: dora-distil-whisper
+  build: pip install dora-distil-whisper
+  path: dora-distil-whisper
+  inputs:
+    input: dora-vad/audio
+  outputs:
+    - text
+  env:
+    TARGET_LANGUAGE: english
+```
+
+## Examples
+
+- speech to text
+  - github: https://github.com/dora-rs/dora/blob/main/examples/speech-to-text
+  - website: https://dora-rs.ai/docs/examples/stt
+- vision language model
+  - github: https://github.com/dora-rs/dora/blob/main/examples/vlm
+  - website: https://dora-rs.ai/docs/examples/vlm
+
+## License
+
+Dora-whisper's code and model weights are released under the MIT License

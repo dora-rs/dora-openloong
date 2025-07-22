@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: dora-sam2
+Version: 0.3.11
+Summary: dora-sam2
+Author-email: Your Name <email@email.com>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: dora-rs>=0.3.9
+Requires-Dist: huggingface-hub>=0.29.0
+Requires-Dist: opencv-python>=4.11.0.86
+Requires-Dist: sam2>=1.1.0
+
+# dora-sam2
+
+> [!WARNING]  
+> SAM2 requires Nvidia GPU to be able to run.
+
+## Getting started
+
+- Install it with pip:
+
+```bash
+pip install -e .
+```
+
+## Contribution Guide
+
+- Format with [ruff](https://docs.astral.sh/ruff/):
+
+```bash
+ruff check . --fix
+```
+
+- Lint with ruff:
+
+```bash
+ruff check .
+```
+
+- Test with [pytest](https://github.com/pytest-dev/pytest)
+
+```bash
+pytest . # Test
+```
+
+## YAML Specification
+
+## Examples
+
+## License
+
+dora-sam2's code are released under the MIT License
